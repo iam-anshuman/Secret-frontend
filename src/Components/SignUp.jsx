@@ -2,8 +2,6 @@ import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import NavBar from './NavBar';
 import { useSignUp } from '../hooks/useSignUp';
-import { useNavigate } from 'react-router-dom';
+import {Link as RouteLink, useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -99,12 +97,6 @@ const navigate = useNavigate();
                   autoComplete="new-password"
                   />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-              </Grid>
             </Grid>
 
 {isLoading?
@@ -130,9 +122,9 @@ const navigate = useNavigate();
             
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <RouteLink to="/login" variant="body2">
                   Already have an account? Sign in
-                </Link>
+                </RouteLink>
               </Grid>
             </Grid>
           </Box>

@@ -3,14 +3,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import NavBar from './NavBar';
-import { useLogIn } from '../hooks/useLogIn';
-import { Link as RouteLink,useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -27,20 +24,27 @@ function Copyright(props) {
 
 
 
-export default function LogIn() {
+export default function ForgetPassword() {
 
-    const {login,isLoading,Error} = useLogIn();
-    const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
-    const password = data.get("password");
-
-    await login(email,password);
-    navigate('/');
+    const response =  await fetch('http://localhost:8080/auth/forget-password',{
+      method:"POST",
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email})
+    })
+    const json = await response.json();
+    if(response.ok){
+      console.log(json);
+    }
+    if(!response.ok){
+      console.log(json);
+    }
+    
   };
 
   return (
@@ -72,64 +76,17 @@ export default function LogIn() {
               autoComplete="email"
               autoFocus
               />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-{ isLoading? 
         <Button
-            disabled
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
         >
-              Log In
+              Send Reset Email
             </Button>
-            :
-            <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            >
-            Log In
-          </Button>
-}
-            <Grid container>
-              <Grid item xs>
-                <RouteLink to="/forget-password" variant="body2">
-                  Forgot password?
-                </RouteLink>
-              </Grid>
-              <Grid item>
-                <RouteLink to="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </RouteLink>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
-        {
-            Error &&
-            <Box sx={{
-                border: '1px solid red',
-                padding: '10px',
-                marginTop: '10px',
-                color:'red',
-                backgroundColor: 'rgba(255, 0, 0, 0.1)',
-                width: '100%',
-                justifyItems: 'center',
-            }}>
-                {Error}
-            </Box>
-        }
+        
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </>
