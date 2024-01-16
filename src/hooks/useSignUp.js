@@ -15,7 +15,7 @@ export const useSignUp = () => {
         // console.log("Signup Hook");
         try {
             
-        const response = await fetch("http://localhost:8080/auth/signup",{
+        const response = await fetch("https://secret-service-pb1n.onrender.com/auth/signup",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({fullname,email,password})
