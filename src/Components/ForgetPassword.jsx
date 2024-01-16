@@ -39,7 +39,7 @@ export default function ForgetPassword() {
       setEmail('');
       return;
     }else{
-      const response =  await fetch('http://localhost:8080/auth/forget-password',{
+      const response =  await fetch('https://secret-service-pb1n.onrender.com/auth/forget-password',{
         method:"POST",
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email})
