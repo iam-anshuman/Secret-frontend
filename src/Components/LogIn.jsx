@@ -102,7 +102,7 @@ export default function LogIn() {
             Log In
           </Button>
 }
-            <Grid container>
+            <Grid sx={{display:"flex"}} container>
               <Grid item xs>
                 <RouteLink to="/forget-password" variant="body2">
                   Forgot password?
