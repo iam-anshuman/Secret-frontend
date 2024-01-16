@@ -36,7 +36,7 @@ export default function Secret() {
 
   const handleDelete = async(id)=>{
 
-    const response = await fetch(`http://localhost:8080/secrets/delete/${id}`,{
+    const response = await fetch(`https://secret-service-pb1n.onrender.com/secrets/delete/${id}`,{
         method:"DELETE",
         headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}
       });
