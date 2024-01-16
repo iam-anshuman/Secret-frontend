@@ -47,6 +47,7 @@ export default function ForgetPassword() {
       const json = await response.json();
       setEmail('');
       if(response.ok){
+        alert('Reset Email Sent');
         console.log(json);
       }
       if(!response.ok){
