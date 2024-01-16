@@ -120,7 +120,7 @@ const navigate = useNavigate();
             </Button>
 } 
             
-            <Grid container justifyContent="flex-end">
+            <Grid container sx={{display:"flex"}} justifyContent="flex-end">
               <Grid item>
                 <RouteLink to="/login" variant="body2">
                   Already have an account? Sign in
