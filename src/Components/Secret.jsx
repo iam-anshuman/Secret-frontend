@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from'react';
-import {Card,CardHeader,CardContent, Grid, Container} from "@mui/material";
+import {Card,CardHeader,CardContent, Grid, Container, Typography} from "@mui/material";
 import { useSecretContext } from '../hooks/useSecretContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -58,7 +58,7 @@ export default function Secret() {
         <Container maxWidth="lg">
             <Grid container spacing={2} marginTop={2}>
         {
-          secrets.secrets != null && secrets.secrets.map(secret => (
+          secrets.secrets ? secrets.secrets.map(secret => (
                     <Grid item xs={12} sm={6} md={4} key={secret._id}>
                     <Card key={secret.id}>
                     <CardHeader title={secret.title} />
@@ -88,8 +88,12 @@ export default function Secret() {
                 }
                     </Card>
                     </Grid>
-                    ))
-                }
+                ))
+                :
+            <Typography variant="h5" component="h2" sx={{marginTop:'20px'}}>
+              There is no secret yet! Click on the add button to add a secret.
+            </Typography>
+          }
             </Grid>
             </Container>
         </>

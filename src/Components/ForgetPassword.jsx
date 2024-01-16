@@ -8,6 +8,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import NavBar from './NavBar';
+import isEmail from 'validator/lib/isEmail';
 
 function Copyright(props) {
   return (
@@ -26,26 +27,34 @@ function Copyright(props) {
 
 export default function ForgetPassword() {
 
+  const [email,setEmail] = React.useState('')
+
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(!isEmail(email)){
+      alert('Invalid Email');
+      setEmail('');
+      return;
+    }else{
+      const response =  await fetch('http://localhost:8080/auth/forget-password',{
+        method:"POST",
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email})
+      })
+      const json = await response.json();
+      setEmail('');
+      if(response.ok){
+        console.log(json);
+      }
+      if(!response.ok){
+        console.log(json);
+      }
+    }
 
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email");
-    const response =  await fetch('http://localhost:8080/auth/forget-password',{
-      method:"POST",
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email})
-    })
-    const json = await response.json();
-    if(response.ok){
-      console.log(json);
-    }
-    if(!response.ok){
-      console.log(json);
-    }
-    
-  };
+    };
 
   return (
     <>
@@ -74,6 +83,8 @@ export default function ForgetPassword() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value = {email}
+              onChange={(e)=>setEmail(e.target.value)}
               autoFocus
               />
         <Button
