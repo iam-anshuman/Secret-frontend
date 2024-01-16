@@ -14,7 +14,7 @@ export default function Secret() {
   useEffect(()=>{
 
     const fetchSecrets = async ()=>{
-      const response = await fetch("http://localhost:8080/secrets",{
+      const response = await fetch("https://secret-service-pb1n.onrender.com/secrets",{
         headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}
       });
       const json = await response.json();
