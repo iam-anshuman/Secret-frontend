@@ -148,10 +148,9 @@ function NavBar() {
 
 {user &&
         <Box sx={{marginLeft:"auto"}}>
-          <Box sx={{display:{xs:'none',sm:"flex"}}}>
-            <Typography variant='body1' sx={{display:"inline",mx:2}}>{user.email}</Typography>
+          
+            <Typography variant='body1' sx={{display:{xs:"none",sm:"inline"},mx:2}}>{user.email}</Typography>
 
-          </Box>
           <Box sx={{ flexGrow: 0,display:"inline" }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
