@@ -81,6 +81,8 @@ function NavBar() {
             Secrets
           </Typography>
 
+{ 
+            !user && 
           <Box sx={{ flexGrow: 1, display: {xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -89,11 +91,9 @@ function NavBar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-            >
+              >
             <MenuIcon />
             </IconButton>
-            { 
-              !user && 
               <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -116,8 +116,8 @@ function NavBar() {
               <Divider/>
               <Button variant='outlined' sx={{display:"block",m:2,}} onClick={handleSignup}>SignUp</Button>
             </Menu>
-      }
           </Box>
+      }
           <KeyIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -148,7 +148,10 @@ function NavBar() {
 
 {user &&
         <Box sx={{marginLeft:"auto"}}>
-          <Typography variant='body1' sx={{display:"inline",mx:2}}>{user.email}</Typography>
+          <Box sx={{display:{xs:'none',sm:"flex"}}}>
+            <Typography variant='body1' sx={{display:"inline",mx:2}}>{user.email}</Typography>
+
+          </Box>
           <Box sx={{ flexGrow: 0,display:"inline" }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
